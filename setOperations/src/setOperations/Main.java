@@ -1,4 +1,5 @@
 package setOperations;
+import org.apache.commons.collections4.Bag;
 
 public class Main {
 	/**
@@ -24,6 +25,7 @@ public class Main {
 	 * @author
 	 */
 
+	private static Bag<String> bag;
 	public static void main(String[] args) {
 		// TODO Perform Operations
 
