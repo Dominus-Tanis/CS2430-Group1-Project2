@@ -1,8 +1,13 @@
 package setOperations;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.apache.commons.collections4.Bag;
 import org.apache.commons.collections4.bag.HashBag;
+import org.apache.commons.collections4.multiset.HashMultiSet;
+import org.apache.commons.collections4.MultiSet;
+import org.apache.commons.collections4.MultiSetUtils;
+import org.apache.commons.collections4.set.*;
 
 public class Main {
 	/**
@@ -27,30 +32,34 @@ public class Main {
 	 * Set A is a subset of B
 	 * @author
 	 */
-
+	private static Set<String> set;
 	private static Bag<String> bag;
 	public static void main(String[] args) {
-		HashBag<Integer> bag1 = new HashBag<Integer>();
-		bag1.add(1);
-		bag1.add(2);
-		bag1.add(2);
-		bag1.add(3);
+		HashMultiSet<Integer> ms5 = new HashMultiSet<Integer>();
+
+		ms5.add(1);
+		ms5.add(2);
+		ms5.add(2);
+		ms5.add(3);
 		
-		HashBag<Integer> bag2 = new HashBag<Integer>();
-		bag2.add(1);
-		bag2.add(4);
-		bag2.add(4);
-		bag2.add(0);
+		HashMultiSet<Integer> ms6 = new HashMultiSet<Integer>();
 		
-		HashBag<Integer> bag3 = MultiSetOperations.union(new HashBag<Integer>(bag1), bag2);
-		Iterator<Integer> bagIterator = bag3.iterator();
-		while(bagIterator.hasNext()) {
-			System.out.print(bagIterator.next()+ ", ");
+		ms6.add(1);
+		ms6.add(4);
+		ms6.add(4);
+		ms6.add(0);
+		
+		HashMultiSet<Integer> unionMS = MultiSetOperations.union(ms5, ms6);
+	
+		
+		
+		Iterator<Integer> msIterator = unionMS.iterator();
+		while(msIterator.hasNext()) {
+			System.out.print(msIterator.next()+ ", ");
 		}
-	}
-
-
-	//Creates a HashMultiSet with hard coded values
+		
+		
+		//Creates a HashMultiSet with hard coded values
 		HashMultiSet<Integer> ms1 = new HashMultiSet<Integer>();
 		ms1.add(1);
 		ms1.add(2);
@@ -94,5 +103,10 @@ public class Main {
 			System.out.print(element + " occurs ");
 			System.out.println(count + " times.");
 		}
-}
+		
+		
+		
+		
+	}
 
+}
