@@ -22,10 +22,7 @@ public class MultiSetOperations {
 	 */
 	public static <T> HashMultiSet<T> union(HashMultiSet<T> ms1, HashMultiSet<T> ms2) {
 		
-		Iterator<T> iterator = ms2.iterator();
-		while(iterator.hasNext()) {
-			ms1.add(iterator.next());
-		}
+		CollectionUtils.union(ms1, ms2);
 		return ms1;
 	}
 	/**
