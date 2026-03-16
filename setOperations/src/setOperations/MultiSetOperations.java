@@ -1,8 +1,12 @@
 package setOperations;
 
 import java.util.Iterator;
+import java.util.Set;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MultiSet;
 import org.apache.commons.collections4.bag.HashBag;
+import org.apache.commons.collections4.multiset.HashMultiSet;
 
 /**
  * 
@@ -16,13 +20,13 @@ public class MultiSetOperations {
 	 * @return A bag that has had the union operation completed on it.
 	 * @author SpencerJPeck
 	 */
-	public static <T> HashBag<T> union(HashBag<T> bag, HashBag<T> otherBag) {
+	public static <T> HashMultiSet<T> union(HashMultiSet<T> ms1, HashMultiSet<T> ms2) {
 		
-		Iterator<T> bagIterator = otherBag.iterator();
-		while(bagIterator.hasNext()) {
-			bag.add(bagIterator.next());
+		Iterator<T> iterator = ms2.iterator();
+		while(iterator.hasNext()) {
+			ms1.add(iterator.next());
 		}
-		return bag;
+		return ms1;
 	}
 	/**
 	 * TODO interesectMin / A bridge B
@@ -33,24 +37,11 @@ public class MultiSetOperations {
 	 * @author Andrew
 	 * Resource: https://github.com/apache/commons-collections/blob/master/src/main/java/org/apache/commons/collections4/MultiSet.java
 	 */
-	public static <T> void setDifference(MultiSet<T> a, MultiSet<T> b) {
+	public static <T> HashMultiSet<T> setDifference(HashMultiSet<T> a, HashMultiSet<T> b) {
 		
 		//takes the difference between the 2 sets (A-B)
-		MultiSet<T> difference = new HashMultiSet<>(CollectionUtils.subtract(a, b));
-		//Creates a set of unique elements in the difference
-		Set<T> unique = difference.uniqueSet();
-		//Iterator instantiation to iterate through unique
-		Iterator<T> iterator = unique.iterator();
-		while (iterator.hasNext()) {
-			//Gets element
-			T element = iterator.next();
-			//Gets count of element
-	        int count = difference.getCount(element);
-	        //Prints both element and count
-	        System.out.println(element);
-	        System.out.println(count);
-		}
-		
+		HashMultiSet<T> difference = new HashMultiSet<>(CollectionUtils.subtract(a, b));
+		return difference;
 		
 	}
 	
@@ -59,25 +50,16 @@ public class MultiSetOperations {
 	 * @author Andrew
 	 * Resource: https://www.geeksforgeeks.org/java/collections-addall-method-in-java-with-examples/
 	 */
-	public static <T> void setAddition(MultiSet<T> a, MultiSet<T> b) {
+	public static <T> HashMultiSet<T> setAddition(MultiSet<T> a, MultiSet<T> b) {
 		//Creates a HashMultiSet to store the sum
-				MultiSet<T> sum = new HashMultiSet<>();
+				HashMultiSet<T> sum = new HashMultiSet<>();
 				//Adds all elements of both MultiSets to sum
 				sum.addAll(a);
 				sum.addAll(b);
 				//Creates a set of unique elements in the sum
-				Set<T> unique = sum.unique;
-				//Iterator instantiation to iterate through unique
-				Iterator<T> iterator = unique.iterator();
-				while (iterator.hasNext()) {
-					//Gets element
-					T element = iterator.next();
-					//Gets count of element
-			        int count = sum.getCount(element);
-			        //Prints both element and count
-			        System.out.println(element);
-			        System.out.println(count);
+				return sum;
+				
 				}
-	}
+	
 
 }
