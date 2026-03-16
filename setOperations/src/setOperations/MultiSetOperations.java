@@ -22,8 +22,8 @@ public class MultiSetOperations {
 	 */
 	public static <T> HashMultiSet<T> union(HashMultiSet<T> ms1, HashMultiSet<T> ms2) {
 		
-		CollectionUtils.union(ms1, ms2);
-		return ms1;
+		HashMultiSet<T> union = new HashMultiSet<>(CollectionUtils.union(ms1, ms2));
+		return union;
 	}
 	/**
 	 * TODO interesectMin / A bridge B
