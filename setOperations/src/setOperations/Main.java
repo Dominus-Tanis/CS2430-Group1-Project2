@@ -43,7 +43,7 @@ public class Main {
 		System.out.println("\n");
 		
 		// ==========================================================
-		// PART 2: MULTISET OPERATIONS OUTPUT (TEAMMATES' CODE)
+		// PART 2: MULTISET OPERATIONS OUTPUT
 		// ==========================================================
 		int[] entityReferenceArry = {1,2,3,4,5,6,7,8,9,10};
 		
