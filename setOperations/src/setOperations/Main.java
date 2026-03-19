@@ -1,46 +1,18 @@
 package setOperations;
 import java.util.Iterator;
-import java.util.Set;
-
-import org.apache.commons.collections4.Bag;
-import org.apache.commons.collections4.bag.HashBag;
 import org.apache.commons.collections4.multiset.HashMultiSet;
-import org.apache.commons.collections4.MultiSet;
-import org.apache.commons.collections4.MultiSetUtils;
-import org.apache.commons.collections4.set.*;
 
 public class Main {
-	/**
-	 * TODO A String array to provide a real world Representation of the boolean arrays
-	 * @author
-	 */
-	/**
-	 * TODO Boolean arrays to perform set operations on.
-	 * These should provide the main ven diagram scenerios:
-	 * No Elements Common
-	 * Some Elements in Common
-	 * Identical Sets
-	 * Set A is a subset of B
-	 * @author
-	 */
-	/**
-	 * TODO MultiSets (I would recommend Java Bags) to perform set operations on.
-	 * These should provide the main ven diagram scenerios:
-	 * No Elements Common
-	 * Some Elements in Common
-	 * Identical Sets
-	 * Set A is a subset of B
-	 * @author
-	 */
 	public static void main(String[] args) {
 		
 		int[] entityReferenceArry = {1,2,3,4,5,6,7,8,9,10};
 		
 		
 		///////////////////////////////////
-		/// Multi Set Outputs - Set A will contain 1-10 with doubly repeated even elements
+		/// Multi Set Outputs - 
 		//////////////////////////////////
 		//Defining Variables
+		//Set A will contain 1-10 with doubly repeated even elements
 		HashMultiSet<Integer> msA = new HashMultiSet<Integer>();
 		msA.add(1);
 		msA.add(2);
@@ -70,26 +42,232 @@ public class Main {
 		msB.add(4);
 		msB.add(5);
 		
+		//Set C Will contain the odd elements between 1-10 repeated 3 times
+		HashMultiSet<Integer> msC = new HashMultiSet<Integer>();
+		msC.add(1);
+        msC.add(3);
+		msC.add(5);
+		msC.add(7);
+		msC.add(9);
+		msC.add(1);
+        msC.add(3);
+		msC.add(5);
+		msC.add(7);
+		msC.add(9);
+		msC.add(1);
+        msC.add(3);
+		msC.add(5);
+		msC.add(7);
+		msC.add(9);
+		
+		//Set D Will contain the even elements between 1-10 repeated 3 times
+		HashMultiSet<Integer> msD = new HashMultiSet<Integer>();
+		msD.add(2);
+        msD.add(4);
+		msD.add(6);
+		msD.add(8);
+		msD.add(10);
+		msD.add(2);
+        msD.add(4);
+		msD.add(6);
+		msD.add(8);
+		msD.add(10);
+		msD.add(2);
+        msD.add(4);
+		msD.add(6);
+		msD.add(8);
+		msD.add(10);
+		
 		//Multi sets to store denoted results
 		//Union
-		HashMultiSet<Integer> msUnion = MultiSetOperations.union(msA, msB);
+		//HashMultiSet<Integer> msUnion = MultiSetOperations.union(msA, msB);
 		//IntersectMin
-		HashMultiSet<Integer> msInter = MultiSetOperations.intersectMin(msA, msB);
+		//HashMultiSet<Integer> msInter = MultiSetOperations.intersectMin(msA, msB);
 		//setDifference
-		HashMultiSet<Integer> msDiff = MultiSetOperations.setDifference(msA, msB);
+		//HashMultiSet<Integer> msDiff = MultiSetOperations.setDifference(msA, msB);
 		//setAddition
-		HashMultiSet<Integer> msAdd =MultiSetOperations.setAddition(msA, msB);
+		//HashMultiSet<Integer> msAdd =MultiSetOperations.setAddition(msA, msB);
 		System.out.println("*******************************MultiSet Operations*******************************");
-		System.out.println("SetA: {1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10}");
-		System.out.println("SetB: {1, 1, 2, 2, 3, 3, 4, 4, 5, 5}");
+		
+
+		System.out.println();
+		///////////////////////////////////
+		/// SETS
+		//////////////////////////////////
+		System.out.println("------------Set Definitions------------");
+		//System.out.println("SetA: {1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10}");
+		//System.out.println("SetB: {1, 1, 2, 2, 3, 3, 4, 4, 5, 5}");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+
+		System.out.print("SetB: ");
+		printMultiSet(msB);
+		
+		System.out.print("SetC: ");
+		printMultiSet(msC);
+
+		System.out.print("SetD: ");
+		printMultiSet(msD);
+		System.out.println();
+		
+
+		///////////////////////////////////
+		/// UNION
+		//////////////////////////////////
+		System.out.println("\n============         UNION TESTS             ============\n");
+		System.out.println("------------         Union Test 1            ------------");
+		System.out.println("------------Multisets used for MultiSet Union------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetB: ");
+		printMultiSet(msB);
 		System.out.println("------------Returning MultiSet Union------------");
-		printMultiSet(msUnion);
-		System.out.println("------------Returning MultiSet IntersectMin------------");
-		printMultiSet(msInter);
+		System.out.print("Set Union: ");
+		printMultiSet(MultiSetOperations.union(msA, msB));
+		System.out.println();
+		//printMultiSet(msUnion);
+
+
+		System.out.println("------------         Union Test 2            ------------");
+		System.out.println("------------Multisets used for MultiSet Union------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetC: ");
+		printMultiSet(msC);
+		System.out.println("------------Returning MultiSet Union------------");
+		System.out.print("Set Union: ");
+		printMultiSet(MultiSetOperations.union(msA, msC));
+		System.out.println();
+		//printMultiSet(msUnion);
+
+		System.out.println("------------         Union Test 3            ------------");
+		System.out.println("------------Multisets used for MultiSet Union------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetD: ");
+		printMultiSet(msD);
+		System.out.println("------------Returning MultiSet Union------------");
+		System.out.print("Set Union: ");
+		printMultiSet(MultiSetOperations.union(msA, msD));
+		System.out.println();
+		//printMultiSet(msUnion);
+		
+
+		///////////////////////////////////
+		/// INTERSECTION
+		//////////////////////////////////
+		System.out.println("\n============          INTERSECTION TESTS             ============\n");
+		System.out.println("------------          Intersection Test 1           ------------");
+		System.out.println("------------Multisets used for MultiSet Intersection------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetB: ");
+		printMultiSet(msB);
+		System.out.println("------------Returning MultiSet Intersection------------");
+		System.out.print("Set Intersection: ");
+		printMultiSet(MultiSetOperations.intersectMin(msA, msB));
+		System.out.println();
+
+		System.out.println("------------          Intersection Test 2           ------------");
+		System.out.println("------------Multisets used for MultiSet Intersection------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetC: ");
+		printMultiSet(msC);
+		System.out.println("------------Returning MultiSet Intersection------------");
+		System.out.print("Set Intersection: ");
+		printMultiSet(MultiSetOperations.intersectMin(msA, msC));
+		System.out.println();
+		
+
+		System.out.println("------------          Intersection Test 3           ------------");
+		System.out.println("------------Multisets used for MultiSet Intersection------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetD: ");
+		printMultiSet(msD);
+		System.out.println("------------Returning MultiSet Intersection------------");
+		System.out.print("Set Intersection: ");
+		printMultiSet(MultiSetOperations.intersectMin(msA, msD));
+		System.out.println();
+		
+
+		///////////////////////////////////
+		/// DIFFERENCE
+		//////////////////////////////////
+		System.out.println("\n============          DIFFERENCE TESTS             ============\n");
+		System.out.println("------------          Difference Test 1           ------------");
+		System.out.println("------------Multisets used for MultiSet Difference------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetB: ");
+		printMultiSet(msB);
 		System.out.println("------------Returning MultiSet Difference------------");
-		printMultiSet(msDiff);
+		System.out.print("Set Difference: ");
+		printMultiSet(MultiSetOperations.setDifference(msA, msB));
+		System.out.println();
+
+		System.out.println("------------          Difference Test 2           ------------");
+		System.out.println("------------Multisets used for MultiSet Difference------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetC: ");
+		printMultiSet(msC);
+		System.out.println("------------Returning MultiSet Difference------------");
+		System.out.print("Set Difference: ");
+		printMultiSet(MultiSetOperations.setDifference(msA, msC));
+		System.out.println();
+
+
+		System.out.println("------------          Difference Test 3           ------------");
+		System.out.println("------------Multisets used for MultiSet Difference------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetD: ");
+		printMultiSet(msD);
+		System.out.println("------------Returning MultiSet Difference------------");
+		System.out.print("Set Difference: ");
+		printMultiSet(MultiSetOperations.setDifference(msA, msD));
+		System.out.println();
+		
+
+		
+		///////////////////////////////////
+		/// ADDITION
+		//////////////////////////////////
+		System.out.println("\n============          ADDITION TESTS             ============\n");
+		System.out.println("------------          Addition Test 1           ------------");
+		System.out.println("------------Multisets used for MultiSet Addition------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetB: ");
+		printMultiSet(msB);
 		System.out.println("------------Returning MultiSet Addition------------");
-		printMultiSet(msAdd);
+		System.out.print("Set Addition: ");
+		printMultiSet(MultiSetOperations.setAddition(msA, msB));
+		System.out.println();
+		
+		System.out.println("------------          Addition Test 2           ------------");
+		System.out.println("------------Multisets used for MultiSet Addition------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetC: ");
+		printMultiSet(msC);
+		System.out.println("------------Returning MultiSet Addition------------");
+		System.out.print("Set Addition: ");
+		printMultiSet(MultiSetOperations.setAddition(msA, msC));
+		System.out.println();
+		
+		System.out.println("------------          Addition Test 3           ------------");
+		System.out.println("------------Multisets used for MultiSet Addition------------");
+		System.out.print("SetA: ");
+		printMultiSet(msA);
+		System.out.print("SetD: ");
+		printMultiSet(msD);
+		System.out.println("------------Returning MultiSet Addition------------");
+		System.out.print("Set Addition: ");
+		printMultiSet(MultiSetOperations.setAddition(msA, msD));
+		System.out.println();
 		
 		
 	}
@@ -100,9 +278,10 @@ public class Main {
 			
 			int element = multIterator.next();
 			
-			System.out.print(element + " occurs ");
-			System.out.println(multiSet.getCount(element) + " times.");
+			System.out.print("\""+ element + "\" occurs ");
+			System.out.print(multiSet.getCount(element) + " times. ");
 		}
+		System.out.println();
 	}
 	
 	
