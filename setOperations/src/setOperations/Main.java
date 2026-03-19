@@ -32,81 +32,79 @@ public class Main {
 	 * Set A is a subset of B
 	 * @author
 	 */
-	private static Set<String> set;
-	private static Bag<String> bag;
 	public static void main(String[] args) {
-		HashMultiSet<Integer> ms5 = new HashMultiSet<Integer>();
-
-		ms5.add(1);
-		ms5.add(2);
-		ms5.add(2);
-		ms5.add(3);
 		
-		HashMultiSet<Integer> ms6 = new HashMultiSet<Integer>();
-		
-		ms6.add(1);
-		ms6.add(4);
-		ms6.add(4);
-		ms6.add(0);
-		
-		HashMultiSet<Integer> unionMS = MultiSetOperations.union(ms5, ms6);
-	
+		int[] entityReferenceArry = {1,2,3,4,5,6,7,8,9,10};
 		
 		
-		Iterator<Integer> msIterator = unionMS.iterator();
-		while(msIterator.hasNext()) {
-			System.out.print(msIterator.next()+ ", ");
-		}
+		///////////////////////////////////
+		/// Multi Set Outputs - Set A will contain 1-10 with doubly repeated even elements
+		//////////////////////////////////
+		//Defining Variables
+		HashMultiSet<Integer> msA = new HashMultiSet<Integer>();
+		msA.add(1);
+		msA.add(2);
+		msA.add(2);
+		msA.add(3);
+		msA.add(4);
+		msA.add(4);
+		msA.add(5);
+		msA.add(6);
+		msA.add(6);
+		msA.add(7);
+		msA.add(8);
+		msA.add(8);
+		msA.add(9);
+		msA.add(10);
+		msA.add(10);
+		//Set B will contain 1-5 with all elements repeated twice
+		HashMultiSet<Integer> msB = new HashMultiSet<Integer>();
+		msB.add(1);
+        msB.add(2);
+		msB.add(3);
+		msB.add(4);
+		msB.add(5);
+		msB.add(1);
+        msB.add(2);
+		msB.add(3);
+		msB.add(4);
+		msB.add(5);
 		
-		
-		//Creates a HashMultiSet with hard coded values
-		HashMultiSet<Integer> ms1 = new HashMultiSet<Integer>();
-		ms1.add(1);
-		ms1.add(2);
-		ms1.add(2);
-		ms1.add(3);
-		//Creates another HashmultiSet with hard coded values
-		HashMultiSet<Integer> ms2 = new HashMultiSet<Integer>();
-		ms2.add(1);
-		ms2.add(4);
-		ms2.add(4);
-		ms2.add(0);
-		
-		System.out.println();
-		System.out.println("Returning set Addition");
-		HashMultiSet<Integer> ms3 = MultiSetOperations.setAddition(ms1, ms2);
-		
-		Set<Integer> unique3 = ms1.uniqueSet();
-		//Iterator instantiation to iterate through unique
-		Iterator<Integer> iterator3 = unique3.iterator();
-		while (iterator3.hasNext()) {
-			//Gets element
-			Integer element = iterator3.next();
-			//Gets count of element
-	        int count = ms3.getCount(element);
-	        //Prints both element and count
-	        System.out.print(element + " occurs ");
-	        System.out.println(count + " times.");
-		}
-		
-		System.out.println("Returning set Difference");
-		HashMultiSet<Integer> ms4 = MultiSetOperations.setDifference(ms1, ms2);
-		
-		Set<Integer> unique4 = ms4.uniqueSet();
-		
-		Iterator<Integer> iterator4 = unique4.iterator();
-		while(iterator4.hasNext()) {
-			
-			Integer element = iterator4.next();
-			
-			int count = ms4.getCount(element);
-			System.out.print(element + " occurs ");
-			System.out.println(count + " times.");
-		}
-		
-		
+		//Multi sets to store denoted results
+		//Union
+		HashMultiSet<Integer> msUnion = MultiSetOperations.union(msA, msB);
+		//IntersectMin
+		HashMultiSet<Integer> msInter = MultiSetOperations.intersectMin(msA, msB);
+		//setDifference
+		HashMultiSet<Integer> msDiff = MultiSetOperations.setDifference(msA, msB);
+		//setAddition
+		HashMultiSet<Integer> msAdd =MultiSetOperations.setAddition(msA, msB);
+		System.out.println("*******************************MultiSet Operations*******************************");
+		System.out.println("SetA: {1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10}");
+		System.out.println("SetB: {1, 1, 2, 2, 3, 3, 4, 4, 5, 5}");
+		System.out.println("------------Returning MultiSet Union------------");
+		printMultiSet(msUnion);
+		System.out.println("------------Returning MultiSet IntersectMin------------");
+		printMultiSet(msInter);
+		System.out.println("------------Returning MultiSet Difference------------");
+		printMultiSet(msDiff);
+		System.out.println("------------Returning MultiSet Addition------------");
+		printMultiSet(msAdd);
 		
 		
 	}
-
+	
+	private static void printMultiSet(HashMultiSet<Integer> multiSet) {
+		Iterator<Integer> multIterator = multiSet.uniqueSet().iterator();
+		while(multIterator.hasNext()) {
+			
+			int element = multIterator.next();
+			
+			System.out.print(element + " occurs ");
+			System.out.println(multiSet.getCount(element) + " times.");
+		}
+	}
+	
+	
+	
 }
