@@ -3,8 +3,48 @@ import java.util.Iterator;
 import org.apache.commons.collections4.multiset.HashMultiSet;
 
 public class Main {
+	
+	// ==========================================================
+	// PART 1 VARIABLES (ORDINARY SETS)
+	// ==========================================================
+	/**
+	 * A String array to provide a real world Representation of the boolean arrays.
+	 * Using a universal set of n >= 10 elements (Fruits).
+	 * @author Kevin
+	 */
+	public static String[] universalSet = {
+			"Apple", "Banana", "Orange", "Mango", "Grapes", 
+			"Pineapple", "Strawberry", "Watermelon", "Kiwi", "Peach"
+	};
+
+	/**
+	 * Boolean arrays to perform set operations on.
+	 * @author Kevin
+	 */
+	public static boolean[] boolSetA = {true, true, false, false, true, false, false, false, true, false};
+	public static boolean[] boolSetB = {false, true, true, false, false, true, false, false, false, false};
+
+	
 	public static void main(String[] args) {
 		
+		// ==========================================================
+		// PART 1: ORDINARY SET OPERATIONS OUTPUT
+		// ==========================================================
+		System.out.println("*******************************Ordinary Set Operations*******************************\n");
+		
+		printSet("Set A", boolSetA, universalSet);
+		printSet("Set B", boolSetB, universalSet);
+
+		printSet("NOT(A) / Complement of A", SetOperations.complementNot(boolSetA), universalSet);
+		printSet("A U B / Union", SetOperations.union(boolSetA, boolSetB), universalSet);
+		printSet("A ∩ B / Intersection", SetOperations.intersect(boolSetA, boolSetB), universalSet);
+		printSet("A - B / Difference", SetOperations.difference(boolSetA, boolSetB), universalSet);
+		printSet("A (+) B / Symmetric Difference", SetOperations.symmetricDifference(boolSetA, boolSetB), universalSet);
+		System.out.println("\n");
+		
+		// ==========================================================
+		// PART 2: MULTISET OPERATIONS OUTPUT (TEAMMATES' CODE)
+		// ==========================================================
 		int[] entityReferenceArry = {1,2,3,4,5,6,7,8,9,10};
 		
 		
@@ -78,15 +118,6 @@ public class Main {
 		msD.add(8);
 		msD.add(10);
 		
-		//Multi sets to store denoted results
-		//Union
-		//HashMultiSet<Integer> msUnion = MultiSetOperations.union(msA, msB);
-		//IntersectMin
-		//HashMultiSet<Integer> msInter = MultiSetOperations.intersectMin(msA, msB);
-		//setDifference
-		//HashMultiSet<Integer> msDiff = MultiSetOperations.setDifference(msA, msB);
-		//setAddition
-		//HashMultiSet<Integer> msAdd =MultiSetOperations.setAddition(msA, msB);
 		System.out.println("*******************************MultiSet Operations*******************************");
 		
 
@@ -95,8 +126,6 @@ public class Main {
 		/// SETS
 		//////////////////////////////////
 		System.out.println("------------Set Definitions------------");
-		//System.out.println("SetA: {1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10}");
-		//System.out.println("SetB: {1, 1, 2, 2, 3, 3, 4, 4, 5, 5}");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
 
@@ -115,7 +144,7 @@ public class Main {
 		/// UNION
 		//////////////////////////////////
 		System.out.println("\n============         UNION TESTS             ============\n");
-		System.out.println("------------         Union Test 1            ------------");
+		System.out.println("------------         Union Test 1             ------------");
 		System.out.println("------------Multisets used for MultiSet Union------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -125,10 +154,8 @@ public class Main {
 		System.out.print("Set Union: ");
 		printMultiSet(MultiSetOperations.union(msA, msB));
 		System.out.println();
-		//printMultiSet(msUnion);
 
-
-		System.out.println("------------         Union Test 2            ------------");
+		System.out.println("------------         Union Test 2             ------------");
 		System.out.println("------------Multisets used for MultiSet Union------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -138,9 +165,8 @@ public class Main {
 		System.out.print("Set Union: ");
 		printMultiSet(MultiSetOperations.union(msA, msC));
 		System.out.println();
-		//printMultiSet(msUnion);
 
-		System.out.println("------------         Union Test 3            ------------");
+		System.out.println("------------         Union Test 3             ------------");
 		System.out.println("------------Multisets used for MultiSet Union------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -150,14 +176,13 @@ public class Main {
 		System.out.print("Set Union: ");
 		printMultiSet(MultiSetOperations.union(msA, msD));
 		System.out.println();
-		//printMultiSet(msUnion);
 		
 
 		///////////////////////////////////
 		/// INTERSECTION
 		//////////////////////////////////
 		System.out.println("\n============          INTERSECTION TESTS             ============\n");
-		System.out.println("------------          Intersection Test 1           ------------");
+		System.out.println("------------          Intersection Test 1            ------------");
 		System.out.println("------------Multisets used for MultiSet Intersection------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -168,7 +193,7 @@ public class Main {
 		printMultiSet(MultiSetOperations.intersectMin(msA, msB));
 		System.out.println();
 
-		System.out.println("------------          Intersection Test 2           ------------");
+		System.out.println("------------          Intersection Test 2            ------------");
 		System.out.println("------------Multisets used for MultiSet Intersection------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -180,7 +205,7 @@ public class Main {
 		System.out.println();
 		
 
-		System.out.println("------------          Intersection Test 3           ------------");
+		System.out.println("------------          Intersection Test 3            ------------");
 		System.out.println("------------Multisets used for MultiSet Intersection------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -196,7 +221,7 @@ public class Main {
 		/// DIFFERENCE
 		//////////////////////////////////
 		System.out.println("\n============          DIFFERENCE TESTS             ============\n");
-		System.out.println("------------          Difference Test 1           ------------");
+		System.out.println("------------          Difference Test 1            ------------");
 		System.out.println("------------Multisets used for MultiSet Difference------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -207,7 +232,7 @@ public class Main {
 		printMultiSet(MultiSetOperations.setDifference(msA, msB));
 		System.out.println();
 
-		System.out.println("------------          Difference Test 2           ------------");
+		System.out.println("------------          Difference Test 2            ------------");
 		System.out.println("------------Multisets used for MultiSet Difference------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -219,7 +244,7 @@ public class Main {
 		System.out.println();
 
 
-		System.out.println("------------          Difference Test 3           ------------");
+		System.out.println("------------          Difference Test 3            ------------");
 		System.out.println("------------Multisets used for MultiSet Difference------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -236,7 +261,7 @@ public class Main {
 		/// ADDITION
 		//////////////////////////////////
 		System.out.println("\n============          ADDITION TESTS             ============\n");
-		System.out.println("------------          Addition Test 1           ------------");
+		System.out.println("------------          Addition Test 1            ------------");
 		System.out.println("------------Multisets used for MultiSet Addition------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -247,7 +272,7 @@ public class Main {
 		printMultiSet(MultiSetOperations.setAddition(msA, msB));
 		System.out.println();
 		
-		System.out.println("------------          Addition Test 2           ------------");
+		System.out.println("------------          Addition Test 2            ------------");
 		System.out.println("------------Multisets used for MultiSet Addition------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -258,7 +283,7 @@ public class Main {
 		printMultiSet(MultiSetOperations.setAddition(msA, msC));
 		System.out.println();
 		
-		System.out.println("------------          Addition Test 3           ------------");
+		System.out.println("------------          Addition Test 3            ------------");
 		System.out.println("------------Multisets used for MultiSet Addition------------");
 		System.out.print("SetA: ");
 		printMultiSet(msA);
@@ -269,9 +294,16 @@ public class Main {
 		printMultiSet(MultiSetOperations.setAddition(msA, msD));
 		System.out.println();
 		
-		
 	}
 	
+	// ==========================================================
+	// HELPER METHODS (DO NOT DELETE)
+	// ==========================================================
+
+	/**
+	 * TEAMMATE'S HELPER METHOD
+	 * Prints out the contents of the HashMultiSet.
+	 */
 	private static void printMultiSet(HashMultiSet<Integer> multiSet) {
 		Iterator<Integer> multIterator = multiSet.uniqueSet().iterator();
 		while(multIterator.hasNext()) {
@@ -284,6 +316,34 @@ public class Main {
 		System.out.println();
 	}
 	
-	
-	
+	/**
+	 * KEVIN'S HELPER METHOD
+	 * Helper method to cleanly display an ordinary set's boolean array and its corresponding string elements.
+	 * Logic pattern for array mapping is a standard technique (Source: basic Java tutorials like GeeksforGeeks).
+	 * @param label The name of the operation being displayed.
+	 * @param boolArray The boolean array result of the set operation.
+	 * @param universalSet The master array of string elements.
+	 */
+	public static void printSet(String label, boolean[] boolArray, String[] universalSet) {
+		System.out.println("--- " + label + " ---");
+		
+		// 1. Print the Boolean Array (Bit String Representation)
+		System.out.print("Boolean Array: [");
+		for (int i = 0; i < boolArray.length; i++) {
+			System.out.print(boolArray[i] + (i < boolArray.length - 1 ? ", " : ""));
+		}
+		System.out.println("]");
+		
+		// 2. Print the Element-Name Listing
+		System.out.print("Elements: {");
+		boolean first = true;
+		for (int i = 0; i < boolArray.length; i++) {
+			if (boolArray[i]) {
+				if (!first) System.out.print(", ");
+				System.out.print(universalSet[i]);
+				first = false;
+			}
+		}
+		System.out.println("}\n");
+	}
 }
