@@ -26,10 +26,15 @@ public class MultiSetOperations {
 		return union;
 	}
 	/**
-	 * TODO interesectMin / A bridge B
+	 * Intersect bridge between bags A and B
+	 * @param bad - First bag
+	 * @param otherBag - Second bag
+	 * @return An intersectioned bag between A and B
 	 * @author Mike
 	 */
-	/**
+	public static <T> HashMultiSet<T> intersectMin(HashMultiSet<T> a, HashMultiSet<T> b) {
+	    return new HashMultiSet<>(CollectionUtils.intersection(a, b));
+	}
 	 * TODO difference / A - B
 	 * @author Andrew
 	 * Resource: https://github.com/apache/commons-collections/blob/master/src/main/java/org/apache/commons/collections4/MultiSet.java
