@@ -297,11 +297,11 @@ public class Main {
 	}
 	
 	// ==========================================================
-	// HELPER METHODS (DO NOT DELETE)
+	// HELPER METHODS 
 	// ==========================================================
 
 	/**
-	 * TEAMMATE'S HELPER METHOD
+	 * HELPER METHOD
 	 * Prints out the contents of the HashMultiSet.
 	 */
 	private static void printMultiSet(HashMultiSet<Integer> multiSet) {
@@ -317,7 +317,7 @@ public class Main {
 	}
 	
 	/**
-	 * KEVIN'S HELPER METHOD
+	 * HELPER METHOD
 	 * Helper method to cleanly display an ordinary set's boolean array and its corresponding string elements.
 	 * Logic pattern for array mapping is a standard technique (Source: basic Java tutorials like GeeksforGeeks).
 	 * @param label The name of the operation being displayed.
