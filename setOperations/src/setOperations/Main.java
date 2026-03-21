@@ -23,6 +23,8 @@ public class Main {
 	 */
 	public static boolean[] boolSetA = {true, true, false, false, true, false, false, false, true, false};
 	public static boolean[] boolSetB = {false, true, true, false, false, true, false, false, false, false};
+	public static boolean[] boolSetC = {true, false, true, false, true, true, false, true, false, true};
+	public static boolean[] boolSetT = {true, true, true, true, true, true, true, true, true, true};
 
 	
 	public static void main(String[] args) {
@@ -32,20 +34,36 @@ public class Main {
 		// ==========================================================
 		System.out.println("*******************************Ordinary Set Operations*******************************\n");
 		
+		printSet("All Elements", boolSetT, universalSet);
+	
 		printSet("Set A", boolSetA, universalSet);
 		printSet("Set B", boolSetB, universalSet);
+		printSet("Set C", boolSetC, universalSet);
 
 		printSet("NOT(A) / Complement of A", SetOperations.complementNot(boolSetA), universalSet);
+		printSet("NOT(B) / Complement of B", SetOperations.complementNot(boolSetB), universalSet);
+		System.out.println("\n");
+		
 		printSet("A U B / Union", SetOperations.union(boolSetA, boolSetB), universalSet);
+		printSet("A U C / Union", SetOperations.union(boolSetA, boolSetC), universalSet);
+		System.out.println("\n");
+		
 		printSet("A ∩ B / Intersection", SetOperations.intersect(boolSetA, boolSetB), universalSet);
+		printSet("A ∩ C / Intersection", SetOperations.intersect(boolSetA, boolSetC), universalSet);
+		System.out.println("\n");
+		
 		printSet("A - B / Difference", SetOperations.difference(boolSetA, boolSetB), universalSet);
+		printSet("A - C / Difference", SetOperations.difference(boolSetA, boolSetC), universalSet);
+		System.out.println("\n");
+		
 		printSet("A (+) B / Symmetric Difference", SetOperations.symmetricDifference(boolSetA, boolSetB), universalSet);
+		printSet("A (+) B / Symmetric Difference", SetOperations.symmetricDifference(boolSetA, boolSetC), universalSet);
+		
 		System.out.println("\n");
 		
 		// ==========================================================
 		// PART 2: MULTISET OPERATIONS OUTPUT
 		// ==========================================================
-		int[] entityReferenceArry = {1,2,3,4,5,6,7,8,9,10};
 		
 		
 		///////////////////////////////////
@@ -303,6 +321,7 @@ public class Main {
 	/**
 	 * HELPER METHOD
 	 * Prints out the contents of the HashMultiSet.
+	 * @author SpencerJPeck
 	 */
 	private static void printMultiSet(HashMultiSet<Integer> multiSet) {
 		Iterator<Integer> multIterator = multiSet.uniqueSet().iterator();
